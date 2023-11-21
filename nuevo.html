@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar una tabla con JavaScript</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<h2>Listado de alumnos</h2>
+<br>
+    <form action="" id="form">
+        <label for="">Nombre repuesto</label>
+        <input type="text" id="nombre">
+        <br><br>
+        <label for="">Categoria</label>
+        <input type="text" id="apellido">
+        <br><br>
+        <label for="">Observacion</label>
+        <input type="text" id="curso">
+        <br><br>
+        <label for="">Hora ingreso</label>
+        <input type="datetime" id="ingreso">
+        <br><br>
+        <label for="">Hora salida</label>
+        <input type="text" id="salida">
+        <br><br>
+        <label for="">Estado</label>
+        <input type="text" id="estado">
+        <br><br>
+    </form>
+    <button id="agregarButton">Agregar Datos</button>
+
+    <h1>Tabla de Datos</h1>
+
+    <table id="tabla-datos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Curso</th>
+                <th>Hora ingreso</th>
+                <th>Hora salida</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <!-- Filas de datos se agregarán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+
+    <script>
+
+    document.getElementById("agregarButton").addEventListener("click", function() {
+    // Aquí puedes agregar el código para modificar la tabla
+    var nombre = document.getElementById("nombre").value;
+    var apellido = document.getElementById("apellido").value;
+    var curso = document.getElementById("curso").value;
+    var horaingreso = document.getElementById("ingreso").value;
+    var horasalida = document.getElementById("salida").value;
+    var estado = document.getElementById("estado").value;
+
+
+    
+    var table = document.getElementById("tbody");
+    var newRow = table.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+    var cell5 = newRow.insertCell(4);
+    var cell6 = newRow.insertCell(5);
+    var cell7 = newRow.insertCell(6);
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = apellido;
+    cell3.innerHTML = curso;
+    cell4.innerHTML = horaingreso;
+    cell5.innerHTML = horasalida;
+    cell6.innerHTML = estado;
+    cell7.innerHTML = '<button onclick="editarFila(this)">Editar</button> <button onclick="eliminarFila(this)">Eliminar</button>';
+
+    document.getElementById("form").reset();
+});
+
+    //modificar buton
+    function editarFila(button) {
+    var row = button.parentNode.parentNode;
+    var nombre = prompt("Ingrese el nuevo nombre:");
+    var apellido = prompt("Ingrese el nuevo apellido:");
+    var curso = prompt("Ingrese el nuevo curso:");
+
+    
+    row.cells[0].innerHTML = nombre;
+    row.cells[1].innerHTML = apellido;
+    row.cells[2].innerHTML = curso;
+    row.cells[3].innerHTML = horaingreso;
+    row.cells[4].innerHTML = horasalida;
+
+
+}
+
+function eliminarFila(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+
+
+    </script>
+</body>
+</html>
